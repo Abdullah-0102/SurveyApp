@@ -1,0 +1,105 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/fonts/Outfit-Black.ttf",
+      "sha1": "51e4964fd4b0072e2f90fd3b1d9883a142130e74"
+    },
+    {
+      "path": "src/fonts/Outfit-Bold.ttf",
+      "sha1": "dd5f4206d22d8b093a53a2f6423ed532fd656aeb"
+    },
+    {
+      "path": "src/fonts/Outfit-ExtraBold.ttf",
+      "sha1": "89c8a2a10ed63a324be105656649546f0be6d8a1"
+    },
+    {
+      "path": "src/fonts/Outfit-ExtraLight.ttf",
+      "sha1": "848a413a4d79c8bff066416dfa3771485d0c4ec9"
+    },
+    {
+      "path": "src/fonts/Outfit-Light.ttf",
+      "sha1": "77822e4eba7d32622113003e21b0d17ed7a8f528"
+    },
+    {
+      "path": "src/fonts/Outfit-Medium.ttf",
+      "sha1": "accdc4a94720336a48bb6fd31759bbfa268f902e"
+    },
+    {
+      "path": "src/fonts/Outfit-Regular.ttf",
+      "sha1": "7724dc42adf3e8caa9a1f7f64bc02016f201f550"
+    },
+    {
+      "path": "src/fonts/Outfit-SemiBold.ttf",
+      "sha1": "8e01f823ad73ea02ad96c676497c3e050d6e9e90"
+    },
+    {
+      "path": "src/fonts/Outfit-Thin.ttf",
+      "sha1": "09459262264acfe2f30db5fcf2de63e6115449b6"
+    },
+    {
+      "path": "src/fonts/SourceSans3-Black.ttf",
+      "sha1": "2e9fabee5054e4cb3ac1e90826e897e8e17b1e77"
+    },
+    {
+      "path": "src/fonts/SourceSans3-BlackItalic.ttf",
+      "sha1": "902d3529d6d0de3a6630bfa7fe87cdf8f1e7f43d"
+    },
+    {
+      "path": "src/fonts/SourceSans3-Bold.ttf",
+      "sha1": "cc46ab0e6ad07ff446bd94d8843b0fc971b9d9f1"
+    },
+    {
+      "path": "src/fonts/SourceSans3-BoldItalic.ttf",
+      "sha1": "1b0d307c20f15fb375f68b291747b675bcb29c5b"
+    },
+    {
+      "path": "src/fonts/SourceSans3-ExtraBold.ttf",
+      "sha1": "3f524ca46a95dbebb0a48e87eb10ff8b6a953ee5"
+    },
+    {
+      "path": "src/fonts/SourceSans3-ExtraBoldItalic.ttf",
+      "sha1": "f1295acf7047a4f9b6bfa36bdaffa1202c89e3c6"
+    },
+    {
+      "path": "src/fonts/SourceSans3-ExtraLight.ttf",
+      "sha1": "6cf6d73c014425addaace5a8e114cc604d3bdf58"
+    },
+    {
+      "path": "src/fonts/SourceSans3-ExtraLightItalic.ttf",
+      "sha1": "2125d8e8935a8854fed50aa770ba87a342e72abd"
+    },
+    {
+      "path": "src/fonts/SourceSans3-Italic.ttf",
+      "sha1": "8d500b9e948a3647bc5542c0bd3b93ba56abbf83"
+    },
+    {
+      "path": "src/fonts/SourceSans3-Light.ttf",
+      "sha1": "4e6f99295a5c73dba5676197b15e563912b27c53"
+    },
+    {
+      "path": "src/fonts/SourceSans3-LightItalic.ttf",
+      "sha1": "7166a144e4b92601f54ecb7d9125960368d588b3"
+    },
+    {
+      "path": "src/fonts/SourceSans3-Medium.ttf",
+      "sha1": "83eb79459a8e39765bbcf9716712b6c6d15dcbbe"
+    },
+    {
+      "path": "src/fonts/SourceSans3-MediumItalic.ttf",
+      "sha1": "db751d0493d8dd8735edf7c956db27cd6ad74aac"
+    },
+    {
+      "path": "src/fonts/SourceSans3-Regular.ttf",
+      "sha1": "9251a4dbc1de55e1120a094dc2c721b4d75518c2"
+    },
+    {
+      "path": "src/fonts/SourceSans3-SemiBold.ttf",
+      "sha1": "7a5ca03083f0c8d402d3bd07e2925d7668fc7510"
+    },
+    {
+      "path": "src/fonts/SourceSans3-SemiBoldItalic.ttf",
+      "sha1": "a69a6ebf6153caffd07c7b80a8de4f8ba140aeac"
+    }
+  ]
+}
