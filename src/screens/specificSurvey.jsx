@@ -2,46 +2,42 @@ import React, { useState } from "react";
 import { View, StyleSheet, Image, TouchableOpacity, PermissionsAndroid, Platform, Alert } from "react-native";
 import Text from "../components/text";
 import LinearGradient from "react-native-linear-gradient";
-// import { launchImageLibrary, launchCamera } from 'react-native-image-picker';
+import { launchImageLibrary, launchCamera } from 'react-native-image-picker';
+import {request, PERMISSIONS} from 'react-native-permissions';
+
 
 
 const SpecificSurvey = ({ route }) => {
   const { title } = route.params;
   const [selectedImage, setSelectedImage] = useState(null);
   
-  const requestPermissions = async () => {
-    if (Platform.OS === 'android') {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-        {
-          title: 'Gallery Access Permission',
-          message: 'This app needs access to your gallery to upload photos.',
-          buttonNeutral: 'Ask Me Later',
-          buttonNegative: 'Cancel',
-          buttonPositive: 'OK',
-        }
-    );
-    console.log(granted);
-    return granted === PermissionsAndroid.RESULTS.GRANTED;
-    }
-    return true;
+  const requestPermissions = (permission) => {
+    return request(permission).then(result => {
+      console.log("Result: " + result);
+      return result;  // Return the result of the permission request
+    }).catch(error => {
+      console.log("Permission request error: ", error);
+      throw error;  // Throw any errors encountered during permission request
+    });
   };
-
+  
   const handleImagePick = async () => {
     try {
-      const hasPermissions = await requestPermissions();
-      if (!hasPermissions) {
+      let hasPermissions = await requestPermissions(PERMISSIONS.ANDROID.READ_MEDIA_IMAGES);
+      console.log("Perm: " + hasPermissions);
+      
+      if (hasPermissions !== 'granted') {
         Alert.alert('Permission Denied', 'Permission to access the gallery is required.');
         throw new Error('Gallery permission denied');
       }
-
+  
       const response = await launchImageLibrary({
         mediaType: 'photo',
         maxWidth: 300,
         maxHeight: 300,
         quality: 1,
       });
-
+  
       if (response.didCancel) {
         console.log('User cancelled image picker');
       } else if (response.errorMessage) {
@@ -57,6 +53,7 @@ const SpecificSurvey = ({ route }) => {
       console.log('Error while picking image: ', error);
     }
   };
+  
 
 
   return (
