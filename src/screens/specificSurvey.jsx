@@ -1,50 +1,50 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Image, TouchableOpacity, PermissionsAndroid, Platform, Alert } from "react-native";
+import { View, StyleSheet, Image, TouchableOpacity, Alert, Modal, ScrollView } from "react-native";
 import Text from "../components/text";
 import LinearGradient from "react-native-linear-gradient";
-import { launchImageLibrary, launchCamera } from 'react-native-image-picker';
-import {request, PERMISSIONS} from 'react-native-permissions';
-
-
+import { launchImageLibrary } from 'react-native-image-picker';
+import { request, PERMISSIONS } from 'react-native-permissions';
 
 const SpecificSurvey = ({ route }) => {
   const { title } = route.params;
-  const [selectedImage, setSelectedImage] = useState(null);
-  
+  const [selectedImages, setSelectedImages] = useState([]);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
   const requestPermissions = (permission) => {
     return request(permission).then(result => {
       console.log("Result: " + result);
-      return result;  // Return the result of the permission request
+      return result;  
     }).catch(error => {
       console.log("Permission request error: ", error);
-      throw error;  // Throw any errors encountered during permission request
+      throw error;  
     });
   };
-  
+
   const handleImagePick = async () => {
     try {
       let hasPermissions = await requestPermissions(PERMISSIONS.ANDROID.READ_MEDIA_IMAGES);
       console.log("Perm: " + hasPermissions);
-      
+
       if (hasPermissions !== 'granted') {
         Alert.alert('Permission Denied', 'Permission to access the gallery is required.');
         throw new Error('Gallery permission denied');
       }
-  
+
       const response = await launchImageLibrary({
         mediaType: 'photo',
         maxWidth: 300,
         maxHeight: 300,
         quality: 1,
+        selectionLimit: 0, // 0 means unlimited selection
       });
-  
+
       if (response.didCancel) {
         console.log('User cancelled image picker');
       } else if (response.errorMessage) {
         console.log('ImagePicker Error: ', response.errorMessage);
         throw new Error(response.errorMessage);
       } else if (response.assets && response.assets.length > 0) {
-        setSelectedImage(response.assets[0].uri);
+        setSelectedImages([...selectedImages, ...response.assets.map(asset => asset.uri)]);
       } else {
         console.log('Unknown error occurred');
         throw new Error('Unknown error occurred');
@@ -53,8 +53,14 @@ const SpecificSurvey = ({ route }) => {
       console.log('Error while picking image: ', error);
     }
   };
-  
 
+  const removeImage = (uri) => {
+    setSelectedImages(selectedImages.filter(imageUri => imageUri !== uri));
+  };
+
+  const toggleModal = () => {
+    setIsModalVisible(!isModalVisible);
+  };
 
   return (
     <View style={styles.container}>
@@ -87,30 +93,83 @@ const SpecificSurvey = ({ route }) => {
         </View>
       </View>
 
-      <TouchableOpacity style={styles.card} onPress={handleImagePick}>
-        <View style={styles.uploadContainer}>
-          <Image
-            style={styles.groupIcon}
-            resizeMode="cover"
-            source={selectedImage ? { uri: selectedImage } : require("../images/upload.png")}
-          />
-          <View style={styles.textContainer}>
-            <Text style={[styles.text2, styles.typo]}>Upload Photo</Text>
-            <Text style={[styles.text3, styles.typo]}>
-              Take one or more photos
-            </Text>
-          </View>
+        <View style={[styles.uploadContainer, styles.card]}>
+          {selectedImages.length === 0 ? (
+            <Image
+              style={styles.groupIcon}
+              resizeMode="cover"
+              source={require("../images/upload.png")}
+            />
+          ) : (
+            <View style={styles.selectedImagesContainer}>
+              {selectedImages.slice(0, 2).map((uri, index) => (
+                <View key={index} style={styles.imageWrapper}>
+                  <Image
+                    style={styles.selectedImage}
+                    resizeMode="cover"
+                    source={{ uri }}
+                  />
+                  <TouchableOpacity style={styles.removeImageButton} onPress={() => removeImage(uri)}>
+                    <Text style={styles.removeImageText}>×</Text>
+                  </TouchableOpacity>
+                </View>
+              ))}
+              {selectedImages.length > 2 && (
+                <TouchableOpacity onPress={toggleModal}>
+                  <Text style={styles.moreImagesText}>+{selectedImages.length - 2} more</Text>
+                </TouchableOpacity>
+              )}
+            </View>
+          )}
+
+          {selectedImages.length > 0 && (
+            <TouchableOpacity style={styles.addMoreButton} onPress={handleImagePick}>
+              <Text style={styles.addMoreButtonText}>Add more +</Text>
+            </TouchableOpacity>
+          )}
+
+          <TouchableOpacity onPress={handleImagePick}>
+            <View style={styles.textContainer}>
+              <Text style={[styles.text2, styles.typo]}>Upload Photo</Text>
+              <Text style={[styles.text3, styles.typo]}>
+                Take one or more photos
+              </Text>
+            </View>
+          </TouchableOpacity>
         </View>
-      </TouchableOpacity>
 
       <TouchableOpacity
-        style={styles.button}
+        style={styles.nextButton}
         onPress={() => {
           // Navigate to the next screen
         }}
       >
         <Text style={[styles.next, styles.typo]}>Next</Text>
       </TouchableOpacity>
+
+      <Modal visible={isModalVisible} transparent={true} animationType="slide">
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <ScrollView contentContainerStyle={styles.modalScrollView}>
+              {selectedImages.map((uri, index) => (
+                <View key={index} style={styles.modalImageWrapper}>
+                  <Image
+                    style={styles.modalImage}
+                    resizeMode="cover"
+                    source={{ uri }}
+                  />
+                  <TouchableOpacity style={styles.removeImageButtonModal} onPress={() => removeImage(uri)}>
+                    <Text style={styles.removeImageTextModal}>×</Text>
+                  </TouchableOpacity>
+                </View>
+              ))}
+            </ScrollView>
+            <TouchableOpacity style={styles.closeModalButton} onPress={toggleModal}>
+              <Text style={styles.closeModalButtonText}>Close</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -181,16 +240,16 @@ const styles = StyleSheet.create({
   uploadContainer: {
     flexDirection: "column", 
     alignItems: "center", 
-    marginTop: 30,
     marginBottom: 30,
+    paddingVertical: 50,
   },
   groupIcon: {
     width: 50,
     height: 50,
-    marginBottom: 10, // Add margin bottom for spacing
+    marginBottom: 10, 
   },
   textContainer: {
-    alignItems: "center", // Center text horizontally
+    alignItems: "center", 
   },
   text2: {
     fontSize: 16,
@@ -201,7 +260,70 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#777",
   },
-  button: {
+  selectedImagesContainer: {
+    flexDirection: "row",
+  },
+  selectedImage: {
+    width: 80,
+    height: 80,
+    marginRight: 10,
+    borderRadius: 10,
+  },
+  imageWrapper: {
+    position: "relative",
+  },
+  removeImageButton: {
+    position: "absolute",
+    top: -3,
+    right: 7,
+    backgroundColor: "black",
+    borderRadius: 10,
+    width: 20,
+    height: 20,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  removeImageText: {
+    color: "white",
+    fontSize: 17,
+    paddingBottom: 5,
+  },
+  removeImageButtonModal: {
+    position: "absolute",
+    top: -4,
+    right: -2,
+    backgroundColor: "black",
+    borderRadius: 10,
+    width: 20,
+    height: 20,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  removeImageTextModal: {
+    color: "white",
+    fontSize: 17,
+    paddingBottom: 5,
+  },
+  moreImagesText: {
+    fontSize: 14,
+    color: "#777",
+    alignSelf: "center",
+    marginTop: 25,
+  },
+  addMoreButton: {
+    backgroundColor: "#ffffff",
+    padding: 7,
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: 'blue',
+    borderRadius: 50,
+    marginVertical: 10,
+  },
+  addMoreButtonText: {
+    fontSize: 14,
+    color: "blue",
+  },
+  nextButton: {
     backgroundColor: "#007bff",
     padding: 15,
     borderRadius: 8,
@@ -209,6 +331,45 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   next: {
+    fontSize: 16,
+    color: "white",
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  modalContent: {
+    width: "80%",
+    backgroundColor: "white",
+    borderRadius: 16,
+    paddingLeft: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  modalScrollView: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+  },
+  modalImageWrapper: {
+    position: "relative",
+    margin: 5,
+  },
+  modalImage: {
+    width: 80,
+    height: 80,
+    borderRadius: 10,
+  },
+  closeModalButton: {
+    backgroundColor: "#007bff",
+    padding: 10,
+    borderRadius: 8,
+    alignItems: "center",
+    marginTop: 20,
+    marginRight: 10,
+  },
+  closeModalButtonText: {
     fontSize: 16,
     color: "white",
   },
