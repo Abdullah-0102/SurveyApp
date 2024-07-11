@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 import { Image, StyleSheet, View, ScrollView, TextInput, TouchableOpacity, Modal, TouchableWithoutFeedback } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
-import TapOnMyLocationSuggested from "./tapOnLocation";
 import Text from '../components/text';
+
+import TapOnMyLocationSuggested from "./tapOnLocation";
+import AddNewLocation1 from "./addNewLocation-1";
+import AddNewLocation2 from "./addNewLocation-2";
+import AddNewLocation3 from "./addNewLocation-3";
 
 const Homepage = ({ navigation }) => {
   const [searchText, setSearchText] = useState("");
   const [isModalVisible, setIsModalVisible] = useState(false); 
+  const [loc1Model, setLoc1Model] = useState(false); 
+  const [loc2Model, setLoc2Model] = useState(false); 
+  const [loc3Model, setLoc3Model] = useState(false); 
+  const[surveySelect, setSurveySelect] = useState("");
+  const[locSelect, setLocSelect] = useState("");
 
   const cardsData = [
     {
@@ -70,6 +79,18 @@ const Homepage = ({ navigation }) => {
   const toggleModal = () => {
     setIsModalVisible(!isModalVisible);
   };
+
+  const toggleLoc1Modal = () => {
+    setLoc1Model(!loc1Model);
+  };
+
+  const toggleLoc2Modal = () => {
+    setLoc2Model(!loc2Model);
+  };
+
+  const toggleLoc3Modal = () => {
+    setLoc3Model(!loc3Model);
+  };
   
   const handleSearchChange = (text) => {
     setSearchText(text);
@@ -80,6 +101,16 @@ const Homepage = ({ navigation }) => {
     setSearchText(locationTitle || ''); 
     toggleModal(); 
   };
+
+  const handleLocationTap = (title) => {
+    setLocSelect(title); 
+    toggleLoc3Modal();
+  };
+
+  const handleSurveyTap = (surveyTitle) => {
+    setSurveySelect(surveyTitle);
+    toggleLoc2Modal();
+  }
 
   const handleCardPress = (card) => {
     console.log(card);
@@ -186,9 +217,9 @@ const Homepage = ({ navigation }) => {
         ))}
         </ScrollView>
 
-      {/* Modal */}
+      {/* Suggested Locations Modal */}
       <Modal
-        animationType="slide"
+        animationType="fade"
         transparent={true}
         visible={isModalVisible}
         onRequestClose={toggleModal}
@@ -196,7 +227,61 @@ const Homepage = ({ navigation }) => {
         <TouchableWithoutFeedback>
           <View style={styles.modalOverlay}>
             <View style={styles.modalWrapper}>
-                <TapOnMyLocationSuggested onClose={toggleModal} onLocationSelect={handleLocationSelect}/>
+                <TapOnMyLocationSuggested onAddNewLocationPress={toggleLoc1Modal} onClose={toggleModal} onLocationSelect={handleLocationSelect}/>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
+
+      {/* Add new Location - 1 Modal */}
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={loc1Model}
+        onRequestClose={toggleLoc1Modal}
+      >
+        <TouchableWithoutFeedback>
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalWrapper}>
+                <AddNewLocation1 onClose={toggleLoc1Modal} onSurveyTap={handleSurveyTap} />
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
+
+
+
+      {/* Add New Location-2 Modal */}
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={loc2Model}
+        onRequestClose={toggleLoc2Modal}
+      >
+        <TouchableWithoutFeedback>
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalWrapper}>
+              <AddNewLocation2 onClose={toggleLoc2Modal} surveySelected={surveySelect} onLocationTap={handleLocationTap}/>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
+
+
+      {/* Add New Location-3 Modal */}
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={loc3Model}
+        onRequestClose={toggleLoc3Modal}
+      >
+        <TouchableWithoutFeedback>
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalWrapper}>
+              <AddNewLocation3 
+                onClose={toggleLoc3Modal} surveySelected={surveySelect} locationSelected={locSelect}
+                toggleModel1={toggleLoc1Modal} toggleModel2={toggleLoc2Modal} toggleModel3={toggleLoc3Modal} toggleModel={toggleModal}
+                handleLocationSelect={handleLocationSelect}/>
             </View>
           </View>
         </TouchableWithoutFeedback>
@@ -214,7 +299,7 @@ const styles = StyleSheet.create({
   },
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent to simulate blur
+    backgroundColor: 'rgba(0.5, 0.5, 0.5, 0.8)', // Semi-transparent to simulate blur
     justifyContent: 'flex-end',
   },
   modalWrapper: {

@@ -8,6 +8,7 @@ import SetNewPasswordScreen from '../screens/setNewPassword';
 import Homepage from '../screens/homepage';
 import TapOnMyLocationSuggested from '../screens/tapOnLocation';
 import SpecificSurvey from '../screens/specificSurvey';
+import AddNewLocation1 from '../screens/addNewLocation-1';
 
 const Stack = createStackNavigator();
 
@@ -52,6 +53,11 @@ const Navigator = () => {
           <Stack.Screen
             name="TapOnLocation"
             component={TapOnMyLocationSuggested}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="AddNewLocation1"
+            component={AddNewLocation1}
             options={{ headerShown: false }}
           />
           <Stack.Screen

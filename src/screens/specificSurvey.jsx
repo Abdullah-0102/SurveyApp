@@ -162,7 +162,7 @@ const SpecificSurvey = ({ route }) => {
         <Text style={[styles.next, styles.typo]}>Next</Text>
       </TouchableOpacity>
 
-      <Modal visible={isModalVisible} transparent={true} animationType="slide">
+      <Modal visible={isModalVisible} transparent={true} animationType="fade">
         <BlurView
           style={styles.blur}
           blurType="light"
@@ -194,7 +194,7 @@ const SpecificSurvey = ({ route }) => {
 
 
       {/* Success Modal */}
-      <Modal visible={isSuccessModalVisible} transparent={true} animationType="slide">
+      <Modal visible={isSuccessModalVisible} transparent={true} animationType="fade">
         <BlurView
           style={styles.blur}
           blurType="light"
@@ -218,7 +218,7 @@ const SpecificSurvey = ({ route }) => {
 
 
       {/* Survey Modal */}
-        <Modal visible={isSubmitModalVisible} transparent={true} animationType="slide">
+        <Modal visible={isSubmitModalVisible} transparent={true} animationType="fade">
           <BlurView
             style={styles.blurBackground}
             blurType="light"

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Image, StyleSheet, View, FlatList, TouchableOpacity } from "react-native";
+import { Image, StyleSheet, View, FlatList, TouchableOpacity, Alert } from "react-native";
 import Text from "../components/text";
 
-const TapOnMyLocationSuggested = ({ onClose, onLocationSelect }) => {
+const TapOnMyLocationSuggested = ({ onAddNewLocationPress, onClose, onLocationSelect }) => {
   const [isPressed, setIsPressed] = useState(false);
 
   const data = [
@@ -17,6 +17,7 @@ const TapOnMyLocationSuggested = ({ onClose, onLocationSelect }) => {
     { id: "9", title: "Central Park Plaza", distance: "1.8m", count: "20" },
     { id: "10", title: "Golden Gate Plaza", distance: "1.3m", count: "90" },
   ];
+
 
   const handlePressIn = () => {
     setIsPressed(true);
@@ -79,6 +80,7 @@ const TapOnMyLocationSuggested = ({ onClose, onLocationSelect }) => {
         <View style={styles.addButtonContainer}>
           <TouchableOpacity
             style={[styles.addButton, isPressed && styles.addButtonPressed]}
+            onPress={onAddNewLocationPress}
             onPressIn={handlePressIn}
             onPressOut={handlePressOut}>
             <Text style={styles.addButtonLabel}>Add New Location</Text>
