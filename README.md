@@ -34,22 +34,34 @@ Custom icons and images for an intuitive user interface.
 
 You've successfully run and modified your React Native App. :partying_face:
 
-### Project Structure
+## Project Structure
 
 The project structure is organized to separate concerns and ensure maintainability:
 
 android: Contains all the Android-specific code and configurations.
+
 ios: Contains all the iOS-specific code and configurations.
+
 node_modules: Contains all the npm packages and dependencies.
+
 src: Contains all the application source code, including components, screens, and utilities.
+
 components: Reusable UI components such as buttons, inputs, and modals.
+
 screens: Individual screen components for the app.
+
 navigation: Navigation setup and configuration.
+
 images: Static assets like images and icons.
+
 styles: Common style definitions and themes.
+
 App.jsx: The root component that initializes the app.
+
 package.json: Project metadata and dependencies.
+
 react-native.config.js: React Native configuration file.
+
 yarn.lock: Yarn lock file to ensure consistent dependency versions.
 
 # Setup Instructions
