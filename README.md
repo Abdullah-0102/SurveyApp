@@ -1,72 +1,60 @@
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
-# Getting Started
+# NewSurveyApp
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Overview
 
-## Step 1: Start the Metro Server
+NewSurveyApp is a mobile application developed using React Native. The primary purpose of this application is to manage and conduct surveys. The app includes functionalities such as user authentication, survey creation, and data visualization. The project leverages various React Native libraries to enhance the user experience and streamline development.
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## Key Features
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## 1. User Authentication:
 
-```bash
-# using npm
-npm start
+Login screen with email validation and password visibility toggle.
+Forgot password functionality to reset the password via email.
+Secure password reset functionality with validation.
 
-# OR using Yarn
-yarn start
-```
+## 2. Surveys:
 
-## Step 2: Start your Application
+Create new surveys and manage existing ones.
+Dynamically render survey content based on user interactions.
+Store survey data for analysis and reporting.
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+## 3. Navigation:
 
-### For Android
+Smooth navigation between screens using React Navigation.
+Modal windows for additional user interactions such as adding new locations.
+Custom animations for modals and other UI elements.
 
-```bash
-# using npm
-npm run android
+## 4. Styling and UI:
 
-# OR using Yarn
-yarn android
-```
-
-### For iOS
-
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
+Consistent and responsive styling using StyleSheet.
+Real blur effect for modals to enhance visual appeal.
+Custom icons and images for an intuitive user interface.
 
 You've successfully run and modified your React Native App. :partying_face:
 
-### Now what?
+### Project Structure
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+The project structure is organized to separate concerns and ensure maintainability:
 
-# Troubleshooting
+android: Contains all the Android-specific code and configurations.
+ios: Contains all the iOS-specific code and configurations.
+node_modules: Contains all the npm packages and dependencies.
+src: Contains all the application source code, including components, screens, and utilities.
+components: Reusable UI components such as buttons, inputs, and modals.
+screens: Individual screen components for the app.
+navigation: Navigation setup and configuration.
+images: Static assets like images and icons.
+styles: Common style definitions and themes.
+App.jsx: The root component that initializes the app.
+package.json: Project metadata and dependencies.
+react-native.config.js: React Native configuration file.
+yarn.lock: Yarn lock file to ensure consistent dependency versions.
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+# Setup Instructions
+
+Note: Make sure you have completed the React Native - Environment Setup instructions till "Creating a new application" step, before proceeding.
 
 # Learn More
 
