@@ -124,6 +124,14 @@ const Homepage = ({ navigation }) => {
     }
   };
 
+  const handleImagePress = () => {
+    navigation.navigate('HowItWorks');
+  };
+
+  const handleGetHelpPress = () => {
+    navigation.navigate('GetHelp');
+  };
+
   const filteredCards = searchText.trim() === ""
     ? cardsData 
     : cardsData.filter(card =>
@@ -134,11 +142,13 @@ const Homepage = ({ navigation }) => {
 
   return (
     <View style={styles.homepage}>
-      <Image
-        style={styles.menuIcon}
-        resizeMode="cover"
-        source={require("../images/drawer-icon.png")}
-      />
+      <TouchableOpacity style={styles.touchableOpacity} onPress={handleGetHelpPress}> 
+        <Image
+          style={styles.menuIcon}
+          resizeMode="cover"
+          source={require("../images/drawer-icon.png")}
+        />
+      </TouchableOpacity>
       <View style={styles.logoContainer}>
         <Image
           source={require('../images/logo-1.png')}
@@ -146,11 +156,13 @@ const Homepage = ({ navigation }) => {
           resizeMode="contain"
         />
       </View>
-      <Image
-        style={styles.vectorIcon}
-        resizeMode="cover"
-        source={require("../images/vector1.png")}
-      />
+      <TouchableOpacity style={styles.touchableOpacity} onPress={handleImagePress}> 
+        <Image
+          style={styles.vectorIcon}
+          resizeMode="cover"
+          source={require("../images/vector1.png")}
+        />
+      </TouchableOpacity>
       <View style={styles.searchContainer}>
         <View style={styles.searchBox}>
           <Image
@@ -309,7 +321,7 @@ const styles = StyleSheet.create({
   menuIcon: {
     position: "absolute",
     top: 40,
-    left: 20,
+    left: -157,
     width: 30,
     height: 30,
   },
@@ -322,10 +334,13 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
   },
+  touchableOpacity: {
+    position: 'absolute',
+  },
   vectorIcon: {
     position: "absolute",
     top: 40,
-    right: 20,
+    right: -157,
     width: 30,
     height: 30,
   },

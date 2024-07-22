@@ -39,6 +39,7 @@
 		8ED269DC796D470A9D508F07 /* SourceSans3-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2548E3162BD4584814B6447 /* SourceSans3-Regular.ttf */; };
 		6DAA4E5D63C54D8DBCEDC55F /* SourceSans3-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF589882CEA7411489521B5F /* SourceSans3-SemiBold.ttf */; };
 		D8879FCFA12F4A65ABD21C13 /* SourceSans3-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 12B7DCBCF37C44FCAE4E5E70 /* SourceSans3-SemiBoldItalic.ttf */; };
+		A7F1C400DFD34CDEA89F597D /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29FF59A7FD3F45B58D3D7D8C /* Inter-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		B2548E3162BD4584814B6447 /* SourceSans3-Regular.ttf */ = {isa = PBXFileReference; name = "SourceSans3-Regular.ttf"; path = "../src/fonts/SourceSans3-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		BF589882CEA7411489521B5F /* SourceSans3-SemiBold.ttf */ = {isa = PBXFileReference; name = "SourceSans3-SemiBold.ttf"; path = "../src/fonts/SourceSans3-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		12B7DCBCF37C44FCAE4E5E70 /* SourceSans3-SemiBoldItalic.ttf */ = {isa = PBXFileReference; name = "SourceSans3-SemiBoldItalic.ttf"; path = "../src/fonts/SourceSans3-SemiBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		29FF59A7FD3F45B58D3D7D8C /* Inter-Bold.ttf */ = {isa = PBXFileReference; name = "Inter-Bold.ttf"; path = "../src/fonts/Inter-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 				B2548E3162BD4584814B6447 /* SourceSans3-Regular.ttf */,
 				BF589882CEA7411489521B5F /* SourceSans3-SemiBold.ttf */,
 				12B7DCBCF37C44FCAE4E5E70 /* SourceSans3-SemiBoldItalic.ttf */,
+				29FF59A7FD3F45B58D3D7D8C /* Inter-Bold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				8ED269DC796D470A9D508F07 /* SourceSans3-Regular.ttf in Resources */,
 				6DAA4E5D63C54D8DBCEDC55F /* SourceSans3-SemiBold.ttf in Resources */,
 				D8879FCFA12F4A65ABD21C13 /* SourceSans3-SemiBoldItalic.ttf in Resources */,
+				A7F1C400DFD34CDEA89F597D /* Inter-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
